@@ -9,8 +9,11 @@ export const initAxios = dispatch => {
         return true;
     };
 };
-let token = ""
-export const setToken = (newToken) => token = newToken
+let token = localStorage.getItem('X-Access-Token') ?? ""
+export const setToken = (newToken) => {
+    token = newToken
+    localStorage.setItem('X-Access-Token', newToken)
+}
 const request = async (url, body) => {
 
     return (await axios.post("/api/" + url, body,
